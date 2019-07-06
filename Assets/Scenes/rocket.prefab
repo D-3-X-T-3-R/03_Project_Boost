@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919251343728332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2189999, z: 0}
+  m_LocalPosition: {x: -37.79, y: 7.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4393327034979340}
@@ -346,12 +346,12 @@ Rigidbody:
   m_GameObject: {fileID: 1919251343728332}
   serializedVersion: 2
   m_Mass: 0.04
-  m_Drag: 0.25
-  m_AngularDrag: 0
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 88
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!82 &82431340048938196
 AudioSource:
@@ -459,6 +459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4317fcf192f6bb841bcee7f8e68dfe23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spin: 150
+  thrust: 100
 --- !u!136 &136080336249945496
 CapsuleCollider:
   m_ObjectHideFlags: 1
