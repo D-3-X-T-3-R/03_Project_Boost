@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class rocket : MonoBehaviour {
     Rigidbody rigid_body;
@@ -28,7 +29,12 @@ public class rocket : MonoBehaviour {
             case "safe":
                 print ("safe");
                 break;
+            case "Finish":
+                SceneManager.LoadScene(1);
+                print("Finish");
+                break;
             default:
+                SceneManager.LoadScene(1);
                 print("dead");
                 break;
         }
