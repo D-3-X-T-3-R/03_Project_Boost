@@ -9,7 +9,11 @@ public class rocket : MonoBehaviour {
     AudioSource audio_source;
     public float spin = 100f;
     public float thrust = 100f;
+    public AudioClip audio_clip_thrust;
+    public AudioClip audio_clip_win;
+    public AudioClip audio_clip_collide;
     enum State{Alive,Transition,Dead};
+    int level = 0;
     State current_state = State.Alive;
     // Use this for initialization
     void Start () {
@@ -24,10 +28,7 @@ public class rocket : MonoBehaviour {
             Rotate();
             Thrust();
         }
-        else
-        {
-            audio_source.Stop();
-        }
+       
     }
 
     void OnCollisionEnter(Collision collision)
@@ -43,27 +44,31 @@ public class rocket : MonoBehaviour {
                 print ("safe");
                 break;
             case "Finish":
+                audio_source.Stop();
+                audio_source.PlayOneShot(audio_clip_win);
                 current_state = State.Transition;
                 Invoke("LoadNextLevel",2f);
                 //LoadNextLevel(1);
+                level = 1;
                 print("Finish");
                 break;
             default:
+                audio_source.Stop();
+                audio_source.PlayOneShot(audio_clip_collide);
                 current_state = State.Dead;
                 Invoke("LoadLevelDead", 2f);
-                //LoadNextLevel(0);
+                level = 0;
                 print("dead");
                 break;
         }
     }
-
     void LoadNextLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(level);
     }
     void LoadLevelDead()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(level);
     }
     private void Rotate()
     {
@@ -79,9 +84,8 @@ public class rocket : MonoBehaviour {
             transform.Rotate(Vector3.forward*rotation_speed);
             
         }
-        //rigid_body.freezeRotation = false;
+        rigid_body.freezeRotation = false;
     }
-
     private void Thrust()
     {
         var thrust_speed = thrust * Time.deltaTime;
@@ -91,7 +95,7 @@ public class rocket : MonoBehaviour {
             rigid_body.AddRelativeForce(Vector3.up*thrust_speed);
             if (!audio_source.isPlaying)
             {
-                audio_source.Play();
+                audio_source.PlayOneShot(audio_clip_thrust);
             }
         }
         else

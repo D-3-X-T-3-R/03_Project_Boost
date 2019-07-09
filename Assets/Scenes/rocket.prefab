@@ -362,7 +362,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 63cd522cc02b53a4e9f4f70394e47489, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -461,6 +461,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spin: 150
   thrust: 100
+  audio_clip_thrust: {fileID: 8300000, guid: 63cd522cc02b53a4e9f4f70394e47489, type: 3}
+  audio_clip_win: {fileID: 8300000, guid: 3cda4197857e5804bb530882cf483b21, type: 3}
+  audio_clip_collide: {fileID: 8300000, guid: a4b30c58df9db434f934df57c870498c, type: 3}
 --- !u!136 &136080336249945496
 CapsuleCollider:
   m_ObjectHideFlags: 1
