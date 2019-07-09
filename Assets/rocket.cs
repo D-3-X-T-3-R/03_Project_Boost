@@ -9,9 +9,15 @@ public class rocket : MonoBehaviour {
     AudioSource audio_source;
     public float spin = 100f;
     public float thrust = 100f;
+
     public AudioClip audio_clip_thrust;
     public AudioClip audio_clip_win;
     public AudioClip audio_clip_collide;
+
+    public ParticleSystem particle_thrust;
+    public ParticleSystem particle_win;
+    public ParticleSystem particle_collide;
+
     enum State{Alive,Transition,Dead};
     int level = 0;
     State current_state = State.Alive;
@@ -35,33 +41,44 @@ public class rocket : MonoBehaviour {
     {
         if (current_state != State.Alive)
         {
+            particle_thrust.Stop();
             return;
         }
         switch (collision.gameObject.tag)
         {
             case "safe":
                 current_state = State.Alive;
-                print ("safe");
                 break;
             case "Finish":
-                audio_source.Stop();
-                audio_source.PlayOneShot(audio_clip_win);
-                current_state = State.Transition;
-                Invoke("LoadNextLevel",2f);
-                //LoadNextLevel(1);
-                level = 1;
-                print("Finish");
+                LevelCompleteSequence();
                 break;
             default:
-                audio_source.Stop();
-                audio_source.PlayOneShot(audio_clip_collide);
-                current_state = State.Dead;
-                Invoke("LoadLevelDead", 2f);
-                level = 0;
-                print("dead");
+                DeathSequence();
                 break;
         }
     }
+
+    private void DeathSequence()
+    {
+        
+        audio_source.Stop();
+        audio_source.PlayOneShot(audio_clip_collide);
+        current_state = State.Dead;
+        particle_collide.Play();
+        Invoke("LoadLevelDead", 2f);
+        level = 0;
+    }
+
+    void LevelCompleteSequence()
+    {
+        audio_source.Stop();
+        audio_source.PlayOneShot(audio_clip_win);
+        current_state = State.Transition;
+        particle_win.Play();
+        Invoke("LoadNextLevel", 2f);
+        level = 1;
+    }
+
     void LoadNextLevel()
     {
         SceneManager.LoadScene(level);
@@ -97,10 +114,12 @@ public class rocket : MonoBehaviour {
             {
                 audio_source.PlayOneShot(audio_clip_thrust);
             }
+            particle_thrust.Play();
         }
         else
         {
             audio_source.Stop();
+            particle_thrust.Stop();
         }
     }
 }
