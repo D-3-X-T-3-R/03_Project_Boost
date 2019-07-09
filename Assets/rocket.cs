@@ -9,7 +9,8 @@ public class rocket : MonoBehaviour {
     AudioSource audio_source;
     public float spin = 100f;
     public float thrust = 100f;
-
+    enum State{Alive,Transition,Dead};
+    State current_state = State.Alive;
     // Use this for initialization
     void Start () {
         rigid_body = GetComponent<Rigidbody>();
@@ -18,28 +19,52 @@ public class rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Rotate();
-        Thrust();
+        if (current_state == State.Alive)
+        {
+            Rotate();
+            Thrust();
+        }
+        else
+        {
+            audio_source.Stop();
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (current_state != State.Alive)
+        {
+            return;
+        }
         switch (collision.gameObject.tag)
         {
             case "safe":
+                current_state = State.Alive;
                 print ("safe");
                 break;
             case "Finish":
-                SceneManager.LoadScene(1);
+                current_state = State.Transition;
+                Invoke("LoadNextLevel",2f);
+                //LoadNextLevel(1);
                 print("Finish");
                 break;
             default:
-                SceneManager.LoadScene(1);
+                current_state = State.Dead;
+                Invoke("LoadLevelDead", 2f);
+                //LoadNextLevel(0);
                 print("dead");
                 break;
         }
     }
 
+    void LoadNextLevel()
+    {
+        SceneManager.LoadScene(1);
+    }
+    void LoadLevelDead()
+    {
+        SceneManager.LoadScene(0);
+    }
     private void Rotate()
     {
         var rotation_speed = spin * Time.deltaTime;
@@ -68,7 +93,6 @@ public class rocket : MonoBehaviour {
             {
                 audio_source.Play();
             }
-            
         }
         else
         {
