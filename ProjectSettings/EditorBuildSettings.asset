@@ -5,10 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Level1.unity
+  - enabled: 0
+    path: Assets/Scenes/Levels/rockets.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 2a280a536490f5545a48c9006171c160
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3.unity
+    guid: a6cfae182b15f8f4ea19724cd236bf52
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level4.unity
     guid: 8d3b8e7d5127a4a4c8642c0b8e4e1058
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level5.unity
+    guid: 89eb86793f281594ca5742557d12b94d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level6.unity
+    guid: 9c64bfff7e5aae946908f96e9f406562
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/89f998e50ea4ca64282bbf04006b4225
+    guid: 89f998e50ea4ca64282bbf04006b4225
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/ed24ee982f8c8a74d9fe508f50ab8d73
+    guid: ed24ee982f8c8a74d9fe508f50ab8d73
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level7.unity
+    guid: ae8bb11c984b2f44cbd5e2fb233a7b43
   m_configObjects: {}

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - safe
+  - star
   layers:
   - Default
   - TransparentFX
