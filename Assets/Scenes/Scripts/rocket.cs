@@ -41,11 +41,11 @@ public class rocket : MonoBehaviour {
         }
         if (Debug.isDebugBuild)
         {
-            if (Input.GetKey(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C))
             {
                 collision_toggle = !collision_toggle;
             }
-            if (Input.GetKey(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 LoadNextLevel();
             }
@@ -122,7 +122,7 @@ public class rocket : MonoBehaviour {
             transform.Rotate(Vector3.forward*rotation_speed);
             
         }
-        rigid_body.freezeRotation = false;
+        rigid_body.freezeRotation = true;
     }
     private void Thrust()
     {

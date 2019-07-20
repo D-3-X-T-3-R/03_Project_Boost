@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Occilator : MonoBehaviour {
-    public Vector3 movement_vector= new Vector3(10,0,0);
+public class Occilator_vertical : MonoBehaviour {
+    public Vector3 movement_vector= new Vector3(0,10,0);
     [Range(0, 1)] public float move_by_value;
     public float ossilation_period = 2f;
 
